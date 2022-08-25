@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AutoComplete</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+	</script>
+
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+		rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='styles/home.css') }}">
+</head>
+<body>
+	<!-- <h1>Welcome to GFG</h1> -->
+	<div class="center">
+		<form method="post" id="form1">
+			<h1>Enter Review</h1>
+			<div class="txt_field">
+				<input type="text" required name="title" id="tags">
+				<span></span>
+				<label>Title</label>
+			</div>
+			<div class="txt_field">
+				<input type="text" required name="review">
+				<span></span>
+				<label>Review</label>
+			</div>
+			<button class="ki" type="submit" form="form1" value="Submit">
+				Submit
+			</button>
+		</form>
+
+	</div>
+	<script>
+$( function() {
+	var availableTags = [
+		{% for language in languages %}
+			"{{language}}",
+		{% endfor %}
+	];
+	$( "#tags" ).autocomplete({
+	source: availableTags
+	});
+} );
+</script>
+
+</body>
+</html>
